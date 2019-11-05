@@ -1,15 +1,22 @@
 var dictionary = [
-  "Skywalker",
-  "Jedi",
-  "Force",
-  "Galaxy",
-  "Alien",
-  "lightsaber",
-  "Resistence",
-  "Chewbacca",
-  "Clone",
-  "Empire",
-  "Sith"
+  "Marvel",
+  "Thor",
+  "Loki",
+  "Avengers",
+  "Groot",
+  "Nebula",
+  "Gamora",
+  "Mantis",
+  "Thanos",
+  "Strange",
+  "Wolverine",
+  "Hulk",
+  "Ultron",
+  "Vision",
+  "Deadpool",
+  "Daredevil",
+  "Punisher",
+  "Venom"
 ];
 var lives = 12;
 var wins = 0;
@@ -24,9 +31,16 @@ console.log(chosenWordUpper);
 chosenWordUpperSplit = chosenWordUpper.split("");
 console.log(chosenWordUpperSplit);
 
-//   // display the word on screen with _ _ _ _ _
+// display the word on screen with _ _ _ _ _
 var flag = Array(chosenWord.length).fill("_");
 console.log(flag.join(" "));
+
+function wordDisplay() {
+  var htmlCurrentWord =
+    "<h2>Current Word</h2>" + "<h2>" + flag.join(" ") + "</h2>";
+  document.querySelector("#currentWord").innerHTML = htmlCurrentWord;
+  console.log(htmlCurrentWord);
+}
 
 //set up an array to store letters entered by player
 var guessedLetters = [];
@@ -71,5 +85,12 @@ document.onkeydown = function(event) {
     var guessTimes = guessedLetters.push(pressedKey);
     console.log(guessedLetters);
     console.log(guessedLetters.join(" "));
+    var htmlLettersGuessed =
+      "<h2>Letters Already Guessed</h2>" +
+      "<h2>" +
+      guessedLetters.join(" ") +
+      "</h2>";
+    document.querySelector("#letterGuessed").innerHTML = htmlLettersGuessed;
+    console.log(htmlLettersGuessed);
   }
 };

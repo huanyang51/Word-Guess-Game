@@ -4,24 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Star Wars Word Guess Game</title>
+    <title>Marvel Word Guess Game</title>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script src="assets/javascript/game.js"></script>
   </head>
   <body>
-    <h1>Star Wars Word Guess Game</h1>
-    <h2>Press any key to start</h2>
+    <h1>Marvel Word Guess Game</h1>
     <br />
-    <h2>Wins</h2>
+    <h2>Press Any Key to Get Started</h2>
     <br />
-    <h2>Current Word</h2>
-    <h2>
-      <script>
-        document.write(chosenWordUpperSplit);
-      </script>
-    </h2>
+    <button onclick="wordDisplay()">Try ME</button>
+    <div id="winsNumber">
+      <h2>Wins</h2>
+    </div>
     <br />
-    <h2>Letters already guessed</h2>
-    <h2></h2>
+    <div id="currentWord">
+      <h2>Current Word</h2>
+    </div>
+    <br />
+    <div id="livesNumber">
+      <h2>
+        Number of Guesses Remaining
+      </h2>
+    </div>
+    <br />
+    <div id="letterGuessed">
+      <h2>Letters Already Guessed</h2>
+    </div>
   </body>
 </html>
