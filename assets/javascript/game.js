@@ -35,12 +35,9 @@ console.log(chosenWordUpperSplit);
 var flag = Array(chosenWord.length).fill("_");
 console.log(flag.join(" "));
 
-function wordDisplay() {
-  var htmlCurrentWord =
-    "<h2>Current Word</h2>" + "<h2>" + flag.join(" ") + "</h2>";
-  document.querySelector("#currentWord").innerHTML = htmlCurrentWord;
-  console.log(htmlCurrentWord);
-}
+htmlCurrentWord = document.getElementById("currentWord");
+htmlCurrentWord.innerHTML = flag.join(" ");
+console.log(htmlCurrentWord);
 
 //set up an array to store letters entered by player
 var guessedLetters = [];
@@ -85,11 +82,7 @@ document.onkeydown = function(event) {
     var guessTimes = guessedLetters.push(pressedKey);
     console.log(guessedLetters);
     console.log(guessedLetters.join(" "));
-    var htmlLettersGuessed =
-      "<h2>Letters Already Guessed</h2>" +
-      "<h2>" +
-      guessedLetters.join(" ") +
-      "</h2>";
+    var htmlLettersGuessed = guessedLetters.join(" ");
     document.querySelector("#letterGuessed").innerHTML = htmlLettersGuessed;
     console.log(htmlLettersGuessed);
   }

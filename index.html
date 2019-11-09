@@ -6,30 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Marvel Word Guess Game</title>
     <link rel="stylesheet" href="assets/css/style.css" />
-    <script src="assets/javascript/game.js"></script>
   </head>
   <body>
     <h1>Marvel Word Guess Game</h1>
     <br />
     <h2>Press Any Key to Get Started</h2>
     <br />
-    <button onclick="wordDisplay()">Try ME</button>
-    <div id="winsNumber">
+    <!-- <button onclick="wordDisplay()">Try ME</button> -->
+    <div>
       <h2>Wins</h2>
+      <h2 id="winsNumber"></h2>
     </div>
     <br />
-    <div id="currentWord">
+    <div>
       <h2>Current Word</h2>
+      <h2 id="currentWord"></h2>
     </div>
     <br />
-    <div id="livesNumber">
+    <div>
       <h2>
         Number of Guesses Remaining
       </h2>
+      <h2 id="livesNumber"></h2>
     </div>
     <br />
-    <div id="letterGuessed">
+    <div>
       <h2>Letters Already Guessed</h2>
+      <h2 id="letterGuessed"></h2>
     </div>
+    <script src="assets/javascript/game.js"></script>
   </body>
 </html>
