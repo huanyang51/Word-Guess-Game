@@ -20,28 +20,33 @@ var dictionary = [
 ];
 var lives = 12;
 var wins = 0;
-
-// choose a random word from dictionary
-chosenWord = dictionary[Math.floor(Math.random() * dictionary.length)];
-console.log(chosenWord);
-
-// split word into separate uppercase letters
-chosenWordUpper = chosenWord.toUpperCase();
-console.log(chosenWordUpper);
-chosenWordUpperSplit = chosenWordUpper.split("");
-console.log(chosenWordUpperSplit);
-
-// display the word on screen with _ _ _ _ _
+var chosenWord = dictionary[Math.floor(Math.random() * dictionary.length)];
 var flag = Array(chosenWord.length).fill("_");
-console.log(flag.join(" "));
 
-htmlCurrentWord = document.getElementById("currentWord");
-htmlCurrentWord.innerHTML = flag.join(" ");
-console.log(htmlCurrentWord);
+// update lives and wins on screen
+winNum = document.getElementById("winsNumber");
+winNum.innerHTML = wins;
 
+livesNum = document.getElementById("livesNumber");
+livesNum.innerHTML = lives;
+
+function start() {
+  // choose a random word from dictionary
+  chosenWord = dictionary[Math.floor(Math.random() * dictionary.length)];
+  // split word into separate uppercase letters
+  chosenWordUpper = chosenWord.toUpperCase();
+  chosenWordUpperSplit = chosenWordUpper.split("");
+
+  // display the word on screen with _ _ _ _ _
+  flag = Array(chosenWord.length).fill("_");
+  htmlCurrentWord = document.getElementById("currentWord");
+  htmlCurrentWord.innerHTML = flag.join(" ");
+  lives = 12;
+  guessedLetters = [];
+}
+start();
 //set up an array to store letters entered by player
 var guessedLetters = [];
-
 // store all possible letters in an array
 var validGuess = [
   "A",
@@ -71,19 +76,40 @@ var validGuess = [
   "Y",
   "Z"
 ];
-
 // when player press any key, store pressed key
 document.onkeydown = function(event) {
-  console.log(event.key);
   var pressedKey = event.key.toUpperCase();
-  console.log(pressedKey);
-  // if pressed key is a valid letter, the game start
+  var idx = chosenWordUpperSplit.indexOf(pressedKey);
+  // check if pressed key is a valid letter
   if (validGuess.indexOf(pressedKey) !== -1) {
-    var guessTimes = guessedLetters.push(pressedKey);
-    console.log(guessedLetters);
-    console.log(guessedLetters.join(" "));
-    var htmlLettersGuessed = guessedLetters.join(" ");
-    document.querySelector("#letterGuessed").innerHTML = htmlLettersGuessed;
-    console.log(htmlLettersGuessed);
+    if (guessedLetters.indexOf(pressedKey) === -1 && idx === -1) {
+      guessedLetters.push(pressedKey);
+      var htmlLettersGuessed = guessedLetters.join(" ");
+      document.querySelector("#letterGuessed").innerHTML = htmlLettersGuessed;
+      console.log(htmlLettersGuessed);
+      lives--;
+      livesNum.innerHTML = lives;
+    }
+    if (idx !== -1) {
+      var indices = [];
+      while (idx !== -1) {
+        indices.push(idx);
+        flag[idx] = pressedKey;
+        idx = chosenWordUpperSplit.indexOf(pressedKey, idx + 1);
+      }
+      htmlCurrentWord.innerHTML = flag.join(" ");
+    }
+  }
+  if (flag.indexOf("_") === -1) {
+    htmlCurrentWord.innerHTML = flag.join(" ");
+    wins++;
+    winNum.innerHTML = wins;
+    // choose another word
+    // clear letter already guessed
+    // set lives to 12
+    start();
+  }
+  if (lives === 0) {
+    start();
   }
 };
