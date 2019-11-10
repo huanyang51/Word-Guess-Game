@@ -20,9 +20,11 @@ var dictionary = [
 ];
 var lives = 12;
 var wins = 0;
-var chosenWord = dictionary[Math.floor(Math.random() * dictionary.length)];
-var flag = Array(chosenWord.length).fill("_");
-
+var chosenWord;
+var flag;
+//set up an array to store letters entered by player
+var guessedLetters;
+var htmlLettersGuessed;
 // update lives and wins on screen
 winNum = document.getElementById("winsNumber");
 winNum.innerHTML = wins;
@@ -43,10 +45,10 @@ function start() {
   htmlCurrentWord.innerHTML = flag.join(" ");
   lives = 12;
   guessedLetters = [];
+  htmlLettersGuessed = guessedLetters.join(" ");
+  document.querySelector("#letterGuessed").innerHTML = htmlLettersGuessed;
 }
 start();
-//set up an array to store letters entered by player
-var guessedLetters = [];
 // store all possible letters in an array
 var validGuess = [
   "A",
@@ -84,7 +86,7 @@ document.onkeydown = function(event) {
   if (validGuess.indexOf(pressedKey) !== -1) {
     if (guessedLetters.indexOf(pressedKey) === -1 && idx === -1) {
       guessedLetters.push(pressedKey);
-      var htmlLettersGuessed = guessedLetters.join(" ");
+      htmlLettersGuessed = guessedLetters.join(" ");
       document.querySelector("#letterGuessed").innerHTML = htmlLettersGuessed;
       console.log(htmlLettersGuessed);
       lives--;
