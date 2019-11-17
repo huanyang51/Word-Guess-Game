@@ -21,17 +21,19 @@ var dictionary = [
 var lives = 12;
 var wins = 0;
 var chosenWord;
+var chosenWordUpperSplit;
 var flag;
 //set up an array to store letters entered by player
 var guessedLetters;
 var htmlLettersGuessed;
 // update lives and wins on screen
-winNum = document.getElementById("winsNumber");
+var winNum = document.getElementById("winsNumber");
 winNum.innerHTML = wins;
 
-livesNum = document.getElementById("livesNumber");
+var livesNum = document.getElementById("livesNumber");
 livesNum.innerHTML = lives;
 
+var htmlCurrentWord = document.getElementById("currentWord");
 function start() {
   // choose a random word from dictionary
   chosenWord = dictionary[Math.floor(Math.random() * dictionary.length)];
@@ -41,9 +43,9 @@ function start() {
 
   // display the word on screen with _ _ _ _ _
   flag = Array(chosenWord.length).fill("_");
-  htmlCurrentWord = document.getElementById("currentWord");
   htmlCurrentWord.innerHTML = flag.join(" ");
   lives = 12;
+  livesNum.innerHTML = lives;
   guessedLetters = [];
   htmlLettersGuessed = guessedLetters.join(" ");
   document.querySelector("#letterGuessed").innerHTML = htmlLettersGuessed;
@@ -109,9 +111,10 @@ document.onkeydown = function(event) {
     // choose another word
     // clear letter already guessed
     // set lives to 12
-    start();
+    window.setTimeout(start, 1000);
   }
   if (lives === 0) {
-    start();
+    htmlCurrentWord.innerHTML = chosenWordUpperSplit.join(" ");
+    window.setTimeout(start, 1000);
   }
 };
